@@ -24,7 +24,7 @@ ds.diskSpace(function(err, res){
     console.log(res);
 });
 
-// Sync
+// Sync 
 var statsSync = ds.diskSpaceSync();
 console.log(statsSync);
 
