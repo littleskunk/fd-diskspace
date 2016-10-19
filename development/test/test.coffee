@@ -6,7 +6,7 @@ osxOutp = """
             Filesystem     1K-blocks    Used Available Capacity iused    ifree %iused  Mounted on
             /dev/vda3       30572556 6924844  22088060    24% 5813733 11077050   23%   /
             tmpfs             251044       0    251044    0%        0   140033    0%   /dev/shm
-            /dev/vda1         245679   70431    162141    31%   60320   151030   30%   /boot
+            /dev/vda1         245679   70431    162141    31%   60320   151030   30%   /boot blank
             """
 osxCanonicity = {
     total:
@@ -25,7 +25,7 @@ osxCanonicity = {
             size: 251044
             used: 0
             percent: 0
-        '/boot':
+        '/boot blank':
             free: 175248
             size: 245679
             used: 70431
@@ -38,7 +38,7 @@ linuxOutp = """
             Filesystem     1K-blocks    Used Available Use% Mounted on
             /dev/vda3       30572556 6924844  22088060  24% /
             tmpfs             251044       0    251044   0% /dev/shm
-            /dev/vda1         245679   70431    162141  31% /boot
+            /dev/vda1         245679   70431    162141  31% /boot blank
             """
 linuxCanonicity = {
     total:
@@ -57,7 +57,7 @@ linuxCanonicity = {
             size: 251044
             used: 0
             percent: 0
-        '/boot':
+        '/boot blank':
             free: 175248
             size: 245679
             used: 70431
