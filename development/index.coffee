@@ -68,7 +68,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
             disks: {}
         }
 
-        reg = /([a-z0-9\/_-]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([a-z0-9\/_- ]+)/gi
+        reg = /([a-z0-9\/_-]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([a-z0-9\/_-\ ]+)/gi
 
         matches = regMatchAll str, reg
 
@@ -108,7 +108,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
             disks: {}
         }
 
-        reg = /([a-z0-9\/_-]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([a-z0-9\/_- ]+)/gi
+        reg = /([a-z0-9\/_-]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([a-z0-9\/_-\ ]+)/gi
 
         matches = regMatchAll str, reg
 
