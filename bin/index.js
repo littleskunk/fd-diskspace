@@ -162,7 +162,7 @@
     } else if ((osType === 'Darwin' && !phSystem) || phSystem === 'Darwin') {
       if (async) {
         if (!phOutput) {
-          return child_process.exec('df -k', function(error, stdout, stderr) {
+          return child_process.exec('df -kP', function(error, stdout, stderr) {
             if (error) {
               return callback(error, null);
             }
@@ -173,7 +173,7 @@
         }
       } else {
         if (!phOutput) {
-          stdout = child_process.execSync('df -k', {
+          stdout = child_process.execSync('df -kP', {
             stdio: 'pipe'
           }).toString();
         } else {
@@ -184,7 +184,7 @@
     } else {
       if (async) {
         if (!phOutput) {
-          return child_process.exec('df -k', function(error, stdout, stderr) {
+          return child_process.exec('df -kP', function(error, stdout, stderr) {
             if (error) {
               return callback(error, null);
             }
@@ -195,7 +195,7 @@
         }
       } else {
         if (!phOutput) {
-          stdout = child_process.execSync('df -k', {
+          stdout = child_process.execSync('df -kP', {
             stdio: 'pipe'
           }).toString();
         } else {

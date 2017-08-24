@@ -163,7 +163,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
         # Async version
         if async
             unless phOutput
-                child_process.exec 'df -k', (error, stdout, stderr)->
+                child_process.exec 'df -kP', (error, stdout, stderr)->
                     if error then return callback error, null
 
                     return callback null, _parseOsxOutp stdout
@@ -172,7 +172,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
         # Sync version
         else
             unless phOutput
-                stdout = child_process.execSync('df -k',  {stdio: 'pipe'}).toString()
+                stdout = child_process.execSync('df -kP',  {stdio: 'pipe'}).toString()
             else
                 stdout = phOutput
 
@@ -183,7 +183,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
         # Async version
         if async 
             unless phOutput
-                child_process.exec 'df -k', (error, stdout, stderr)->
+                child_process.exec 'df -kP', (error, stdout, stderr)->
                     if error then return callback error, null
 
                     return callback null, _parseLinuxOutp stdout
@@ -192,7 +192,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
         # Sync version
         else
             unless phOutput
-                stdout = child_process.execSync('df -k',  {stdio: 'pipe'}).toString()
+                stdout = child_process.execSync('df -kP',  {stdio: 'pipe'}).toString()
             else
                 stdout = phOutput
 
