@@ -57,47 +57,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
 
         return disks
 
-    # OSX
-    _parseOsxOutp = (str)->
-        disks = {
-            total:
-                free:       0
-                size:       0
-                used:       0
-                percent:    0
-            disks: {}
-        }
-
-        reg = /([a-z0-9\/_-]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)(?:\ |\t)*([0-9]+)%(?:\ |\t)*([a-z0-9 \/\._-]+)/gi
-
-        matches = regMatchAll str, reg
-
-        for disk in matches
-            name = disk[9]
-            used = parseInt disk[3]
-            size = parseInt disk[2]
-            free = size - used
-
-            percent = used / size
-
-            # Добавление диска
-            disks.disks[ name ] = {
-                free
-                size
-                used
-                percent
-            }
-
-            # Подсчет общей статистики
-            disks.total.free +=   free
-            disks.total.size +=   size
-            disks.total.used +=   used
-
-        disks.total.percent = disks.total.used / disks.total.size
-
-        return disks
-
-    # Linux
+    # Linux and OSX
     _parseLinuxOutp = (str)->
         disks = {
             total:
@@ -157,33 +117,12 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
                 stdout = phOutput
 
             return _parseWindowOutp stdout
-
-    #- OSX
-    else if (osType == 'Darwin' && !phSystem) || phSystem == 'Darwin'
-        # Async version
-        if async
-            unless phOutput
-                child_process.exec 'df -k', (error, stdout, stderr)->
-                    if error then return callback error, null
-
-                    return callback null, _parseOsxOutp stdout
-            else
-                return callback null, _parseOsxOutp phOutput
-        # Sync version
-        else
-            unless phOutput
-                stdout = child_process.execSync('df -k',  {stdio: 'pipe'}).toString()
-            else
-                stdout = phOutput
-
-            return _parseOsxOutp stdout
-
-    #- Linux
+    #- Linux and OSX
     else
         # Async version
         if async 
             unless phOutput
-                child_process.exec 'df -k', (error, stdout, stderr)->
+                child_process.exec 'df -kP', (error, stdout, stderr)->
                     if error then return callback error, null
 
                     return callback null, _parseLinuxOutp stdout
@@ -192,7 +131,7 @@ _diskSpace = (async=true, callback=undefined, phSystem=undefined, phOutput=undef
         # Sync version
         else
             unless phOutput
-                stdout = child_process.execSync('df -k',  {stdio: 'pipe'}).toString()
+                stdout = child_process.execSync('df -kP',  {stdio: 'pipe'}).toString()
             else
                 stdout = phOutput
 
